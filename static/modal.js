@@ -15,6 +15,7 @@ function openModal(e) {
 // 모달 닫기
 function closeModal(e) {
     let modal = document.getElementById("myModal");
+    document.getElementById("myIframe").src = document.getElementById("myIframe").src + "?enablejsapi=1&version=3&playerapiid=ytplayer";
     modal.style.display = "none";
 }
 
@@ -22,7 +23,7 @@ function closeModal(e) {
 window.onclick = function (event) {
     let modal = document.getElementById("myModal");
     if (event.target == modal) {
-        modal.style.display = "none";
         document.getElementById("myIframe").src = document.getElementById("myIframe").src + "?enablejsapi=1&version=3&playerapiid=ytplayer";
+        modal.style.display = "none";
     }
 }
