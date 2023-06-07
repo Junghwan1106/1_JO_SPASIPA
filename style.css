@@ -1,0 +1,137 @@
+* {
+    font-family: 'Gowun Dodum', sans-serif;
+}
+body{
+    background : #141414;
+}
+a {color: #fff; text-decoration: none; outline: none}
+
+ a:hover, a:active {text-decoration: none; color:#ff1c1c; background-color:none;}
+
+/* 최상단 상태바 */
+.status-bar{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 3px 3px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0px;
+    z-index: 2;
+}.status-bar__column{
+    display: flex;
+    justify-content: center;
+    width: 33%;
+    padding: 20px 20px 20px 20px;
+}
+.logo-img{
+    width: 150px;
+    position: relative;
+    justify-self: left;
+}
+
+.mytitle-container {
+    width: 100%;
+    height: 250px;
+
+    background: #141414;
+    background-position: center;
+    background-size: cover;
+
+    color: white;
+
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    align-items: center;
+    justify-content: center;
+}
+.mytitle-container-h{
+    text-align: center;
+}
+.mytitle-h1{
+    font-size: 50px;
+}
+.mytitle-h2{
+    font-size: 18px;
+}
+
+.pick-btn {
+    width: 100px;
+    height: 50px;
+
+    background-color: transparent;
+    color: white;
+
+    border-radius: 50px;
+    border: 1px solid white;
+
+    margin-top: 10px;
+}
+
+.pick-btn:hover {
+    border: 2px solid white;
+}
+
+.mycomment {
+    color: gray;
+}
+
+.tubes {
+    margin: 20px auto 0px auto;
+    width: 95%;
+    max-width: 2000px;
+}
+.row{
+    overflow: visible;
+}
+.mypost {
+    width: 95%;
+    max-width: 500px;
+    margin: 20px auto 0px auto;
+    padding: 20px;
+    box-shadow: 0px 0px 5px 0px gray;
+
+    display: none;
+}
+
+.mybtns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 20px;
+}
+
+.mybtns>button {
+    margin-right: 10px;
+}
+
+.top-title{
+    margin: 30px;
+    text-align: center;
+    font-size: 45px;
+    font-weight: 700;
+    color: #fff;
+    
+}
+
+.top-tubes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 3px;
+    box-sizing: border-box;
+    margin: 10px;
+}
+.top-tube{
+    margin-right: 70px;
+}
+.top-tube>img{
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: -40px;
+    border-radius: 10px;
+}
