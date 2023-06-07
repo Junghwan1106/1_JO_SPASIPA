@@ -1,9 +1,11 @@
 import os
+
 import certifi
 import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
-from flask import Flask, jsonify, render_template, request, session, redirect, url_for
+from flask import (Flask, jsonify, redirect, render_template, request, session,
+                   url_for)
 from pymongo import MongoClient
 
 load_dotenv()
@@ -19,15 +21,15 @@ ca=certifi.where()
 # 이 문자열은 서버만 알고있기 때문에, 내 서버에서만 토큰을 인코딩(=만들기)/디코딩(=풀기) 할 수 있습니다.
 SECRET_KEY = '1zo!@spasipa@!#pick'
 
-# JWT 패키지를 사용합니다. (설치해야할 패키지 이름: PyJWT)
-import jwt
-
 # 토큰에 만료시간을 줘야하기 때문에, datetime 모듈도 사용합니다.
 import datetime
-
 # 회원가입 시엔, 비밀번호를 암호화하여 DB에 저장해두는 게 좋습니다.
 # 그렇지 않으면, 개발자(=나)가 회원들의 비밀번호를 볼 수 있으니까요.^^;
 import hashlib
+
+# JWT 패키지를 사용합니다. (설치해야할 패키지 이름: PyJWT)
+import jwt
+
 
 @app.route('/')
 def home():
@@ -67,8 +69,8 @@ def tube_post():
 #################################
 ##  HTML을 주는 부분             ##
 #################################
-@app.route('/')
-def home():
+@app.route('/jwt')
+def jwtfunc():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
