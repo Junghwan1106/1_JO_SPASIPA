@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Page</title>
+    <style>
+        .join-wrapper {
+            width: 400px;
+            height: 550px;
+            margin: 250px auto 300px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="join-wrapper" style="border:2px solid">
+        <h2>Join</h2>
+        <!-- <form action="서버의URL" name="loginform" method="post" id="login-form" class="form" onsubmit="return sendit()"> -->
+            <p>
+                <input type="text" name="userid" id="user-id"placeholder="ID">
+                <input type="button" id="check_id_btn" value="check" onclick="checkID()">
+            </p>
+            <p>
+                <input type="password" name="userpw" id="user-pw" placeholder="Password">
+            </p>
+            <p>
+                <input type="password" name="userpwcheck" id="user-ch" placeholder="PasswordCheck">
+            </p>
+            <p>
+                <input type="text" name="username" id="user-name" placeholder="UserName">
+            </p>
+            <p>
+                <input type="text" name="email" id="user-email" placeholder="Email">
+                <input type="button" id="ckeck_email-btn" value="check" onclick="checkEmail()">
+                <p id="result">&nbsp;</p>
+            </p>
+            <p>
+                <input type="submit" value="Create Account" id="Sin-Up" class="form_btn">
+            </p>
+            <p class="pre_btn">Are you Join? <a href="login.html">Login</a></p>
+</body>
+</html>
