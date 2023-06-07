@@ -17,11 +17,12 @@ db = client.dbsparta
 def home():
     return render_template('index.html')
 
-@app.route("/movie", methods=["POST"])
+@app.route("/main", methods=["POST"])
 def tube_post():
     url_receive = request.form['url_give']
     comment_receive = request.form['comment_give']
     star_receive = request.form['star_give']
+    
     
     headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
     data = requests.get(url_receive,headers=headers)
@@ -32,6 +33,7 @@ def tube_post():
     ogtitle= soup.select_one('meta[property="og:title"]')['content']
     ogimage= soup.select_one('meta[property="og:image"]')['content']
     ogdesc= soup.select_one('meta[property="og:description"]')['content']
+    titleimage = soup.select_one('img#img.style-scope.yt-img-shadow')
 
     doc = {
         'title':ogtitle,
@@ -39,16 +41,18 @@ def tube_post():
         'image':ogimage,
         # 'url':url_receive, 안 필요함
         'comment':comment_receive,
-        'star': star_receive
+        'star': star_receive,
+        'titleimage':titleimage
     }
-    db.movies.insert_one(doc)
+    db.tubes.insert_one(doc)
 
     return jsonify({'msg':'저장 완료!'})
 
-@app.route("/movie", methods=["GET"])
+@app.route("/main", methods=["GET"])
 def movie_get():
-    all_movies = list(db.movies.find({},{'_id':False}))
+    all_movies = list(db.tubes.find({},{'_id':False}))
     return jsonify({'result': all_movies})
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
