@@ -1,0 +1,103 @@
+* {
+    font-family: 'Gowun Dodum', sans-serif;
+}
+body{
+    background : #141414;
+}
+a {color: #fff; text-decoration: none; outline: none}
+
+ a:hover, a:active {text-decoration: none; color:#ff1c1c; background-color:none;}
+
+/* 최상단 상태바 */
+.status-bar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 3px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0px;
+    z-index: 2;
+}.status-bar__column{
+    display: flex;
+    justify-content: right;
+    width: 33%;
+    padding-top: 20px;
+    padding-right: 40px;
+}
+
+.mytitle-container {
+    width: 100%;
+    height: 250px;
+
+    background: #141414;
+    background-position: center;
+    background-size: cover;
+
+    color: white;
+
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    align-items: center;
+    justify-content: center;
+}
+.mytitle-container-h{
+    text-align: center;
+}
+.mytitle-h1{
+    font-size: 50px;
+}
+.mytitle-h2{
+    font-size: 18px;
+}
+
+.pick-btn {
+    width: 100px;
+    height: 50px;
+
+    background-color: transparent;
+    color: white;
+
+    border-radius: 50px;
+    border: 1px solid white;
+
+    margin-top: 10px;
+}
+
+.pick-btn:hover {
+    border: 2px solid white;
+}
+
+.mycomment {
+    color: gray;
+}
+
+.mycards {
+    margin: 20px auto 0px auto;
+    width: 95%;
+    max-width: 1200px;
+}
+
+.mypost {
+    width: 95%;
+    max-width: 500px;
+    margin: 20px auto 0px auto;
+    padding: 20px;
+    box-shadow: 0px 0px 3px 0px gray;
+
+    display: none;
+}
+
+.mybtns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 20px;
+}
+
+.mybtns>button {
+    margin-right: 10px;
+}
