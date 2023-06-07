@@ -1,12 +1,17 @@
-from flask import Flask, render_template, request, jsonify
-app = Flask(__name__)
-
-from pymongo import MongoClient
-client = MongoClient('mongodb+srv://sparta:test@cluster0.x6y4kbq.mongodb.net/?retryWrites=true&w=majority')
-db = client.dbsparta
+import os
 
 import requests
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+from flask import Flask, jsonify, render_template, request
+from pymongo import MongoClient
+
+load_dotenv()
+
+app = Flask(__name__)
+
+client = MongoClient(os.environ.get('MongoDbUrl'))
+db = client.dbsparta
 
 @app.route('/')
 def home():
