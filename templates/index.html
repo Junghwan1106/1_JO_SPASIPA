@@ -24,7 +24,7 @@
         });
 
         function listing() {
-            fetch('/tube').then((res) => res.json()).then((data) => {
+            fetch('/main').then((res) => res.json()).then((data) => {
                 let rows = data['result']
 
                 $('#tube-box').empty()
@@ -34,18 +34,22 @@
                     let desc = a['desc']
                     let comment = a['comment']
                     let star = a['star']
+                    let titleimage = a['titleimage']
                     let star_repeat = '⭐'.repeat(star)
 
                     let temp_html = `
                     <div class="col">
                         <div class="card h-100">
-                            <img src=${image}
+                            <img src="${image}"
                                 class="card-img-top">
                             <div class="card-body">
-                                <h5 class="card-title">${title}</h5>
-                                <p class="card-text">${desc}</p>
-                                <p>${star_repeat}</p>
+                                <div class="title-info">
+                                    <img src="${titleimage}" alt="">
+                                    <h5 class="card-title">${title}</h5>
+                                </div>
                                 <p class="mycomment">${comment}</p>
+                                <p class="star">${star_repeat}</p>
+                                <p class="user">작성자</p>
                             </div>
                         </div>
                     </div>
@@ -66,7 +70,7 @@
             formData.append("comment_give", comment);
             formData.append("star_give", star);
 
-            fetch('/tube', {
+            fetch('/main', {
                 method: "POST",
                 body: formData
             }).then((res) => res.json()).then((data) => {
@@ -185,7 +189,7 @@
                             class="card-img-top">
                         <div class="card-body">
                             <div class="title-info">
-                                <img src="src=https://yt3.ggpht.com/ytc/AGIKgqMOLbjaL9SFdVNEhFJ5zjNHyD4bT83Um6YRINj_Dg=s68-c-k-c0x00ffffff-no-rj" alt="">
+                                <img src="https://yt3.ggpht.com/ytc/AGIKgqMOLbjaL9SFdVNEhFJ5zjNHyD4bT83Um6YRINj_Dg=s68-c-k-c0x00ffffff-no-rj" alt="">
                                 <h5 class="card-title">영화 제목이 들어갑니다</h5>
                             </div>
                             <p class="mycomment">나의 한줄 평을 씁니다</p>
