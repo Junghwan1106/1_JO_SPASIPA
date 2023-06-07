@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        .login-wrapper {
+            width: 400px;
+            height: 550px;
+            margin: 250px auto 300px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <body>
+        <div class="login-wrapper" style="border:3px solid">
+            <h2>Login</h2>
+            <form action="http://127.0.0.1:5501/templates/index.html" name="loginform" method="post" id="login-form"
+                class="form">
+
+                <p>
+                    <input type="text" name="userName" placeholder="ID">
+                </p>
+                <p>
+                    <input type="password" name="userPassword" placeholder="Password">
+                </p>
+                <p>
+                    <label for="remember-check">
+                        <input type="checkbox" id="remember-check">아이디 저장하기
+                </p>
+                </label>
+                <p class="forget_pw">
+                    <a class="'#">Forget Password?</a>
+                </p>
+                <p>
+                    <input type="submit" value="Login" id="login-btn" class="form_btn">
+                </p>
+            </form>
+            <p>
+            <p id="join_btn">Not a Meber? &nbsp;<a href="join.html">Sing Up</a></p>
+            </p>
+
+
+        </div>
+    </body>
+
+</html>
