@@ -13,7 +13,8 @@
     </script>
 
     <title>스파싯파 피디아</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- css 링크를 걸 때 아래와 같이 해줘야합니다. static이라는 폴더도 생성해줘야 합니다. -->
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">  
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
     <script>
@@ -156,6 +157,7 @@
 
     <!-- 영상 목록 -->
     <div>
+        <!-- 튜브 목록 -->
         <div class="tubes">
             <div class="row row-cols-1 row-cols-md-5 g-4" id="tube-box">
                 <div class="col">
