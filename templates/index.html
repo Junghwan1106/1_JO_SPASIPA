@@ -22,10 +22,10 @@
         });
 
         function listing() {
-            fetch('/movie').then((res) => res.json()).then((data) => {
+            fetch('/tube').then((res) => res.json()).then((data) => {
                 let rows = data['result']
 
-                $('#cards-box').empty()
+                $('#tube-box').empty()
                 rows.forEach((a) => {
                     let title = a['title']
                     let image = a['image']
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     `
-                    $('#cards-box').append(temp_html)
+                    $('#tube-box').append(temp_html)
                 })
             })
         }
@@ -64,7 +64,7 @@
             formData.append("comment_give", comment);
             formData.append("star_give", star);
 
-            fetch('/movie', {
+            fetch('/tube', {
                 method: "POST",
                 body: formData
             }).then((res) => res.json()).then((data) => {
@@ -87,12 +87,18 @@
     <!-- 최상단 상태바 -->
     <div class="status-bar">
         <div class="status-bar__column">
-
+            <div>
+                <img class="logo-img" src="https://github.com/Junghwan1106/1_JO_SPASIPA/blob/main/SPASIPA.png?raw=true" alt="logo">
+            </div>
+            <div>
+            </div>
+            
         </div>
         <div class="status-bar__column">
 
         </div>
         <div class="status-bar__column">
+            <div></div>
             <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                 <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
@@ -125,7 +131,7 @@
     <div class="mypost" id="post-box">
         <div class="form-floating mb-3">
             <input id="url" type="email" class="form-control" placeholder="name@example.com">
-            <label>영화URL</label>
+            <label>유튜브URL</label>
         </div>
         <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupSelect01">별점</label>
@@ -144,17 +150,17 @@
         </div>
         <div class="mybtns">
             <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
-            <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+            <button onclick="close_box()" type="button" class="btn btn-dark">닫기</button>
         </div>
     </div>
 
     <!-- 영상 목록 -->
     <div>
-        <div class="mycards">
-            <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+        <div class="tubes">
+            <div class="row row-cols-1 row-cols-md-5 g-4" id="tube-box">
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                        <img src="https://i.ytimg.com/vi/ktZ3XR887wk/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBCCLDe2KYMfOt7yOV06cdTiGqVbA"
                             class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">영화 제목이 들어갑니다</h5>
@@ -166,7 +172,7 @@
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                        <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"
                             class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">영화 제목이 들어갑니다</h5>
@@ -178,7 +184,7 @@
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                        <img src="https://i.ytimg.com/vi/ktZ3XR887wk/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBCCLDe2KYMfOt7yOV06cdTiGqVbA"
                             class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">영화 제목이 들어갑니다</h5>
@@ -190,7 +196,7 @@
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                        <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"
                             class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">영화 제목이 들어갑니다</h5>
@@ -200,10 +206,39 @@
                         </div>
                     </div>
                 </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"
+                            class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">영화 제목이 들어갑니다</h5>
+                            <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
+                            <p>⭐⭐⭐</p>
+                            <p class="mycomment">나의 한줄 평을 씁니다</p>
+                        </div>
+                    </div>
+                </div>
+               
+                
             </div>
         </div>
-        <div>
-            
+
+
+        <!-- 탑5 목록 -->
+        <div class="top">
+            <div class="top-title">
+                TOP N
+            </div>
+            <div class="top-tubes">
+                <div class="top-tube">
+                    <img src="https://www.netflix.com/tudum/top10/images/big_numbers/1.png" alt="number">
+                    <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA" alt="tube image">
+                </div>
+                <div class="top-tube">
+                    <img src="https://www.netflix.com/tudum/top10/images/big_numbers/2.png" alt="number">
+                    <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA" alt="tube image">
+                </div>
+            </div>
         </div>
     </div>
     
