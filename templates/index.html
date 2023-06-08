@@ -71,10 +71,10 @@
                     if (done_like == 0) {
                         let temp_html = `
                             <div class="col">
-                                <div class="card h-100">
+                                <div class="card h-100" id=${url} onclick="openModal(this)">
                                     <img src="${image}"
                                         class="card-img-top">
-                                    <div class="card-body">
+                                    <div class="card-body" >
                                         <div class="title-info">
                                             <h5 class="card-title">${title}</h5>
                                         </div>
@@ -93,7 +93,7 @@
                     } else {
                         let temp_html = `
                             <div class="col">
-                                <div class="card h-100">
+                                <div class="card h-100" id=${url} onclick="openModal(this)">
                                     <img src="${image}"
                                         class="card-img-top">
                                     <div class="card-body">

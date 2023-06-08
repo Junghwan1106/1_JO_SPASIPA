@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bulma CSS -->
-    <link rel="stylesheet" href="{{url_for('static',filename='register.css')}}">  
+    <link rel="stylesheet" href="{{url_for('static',filename='register.css')}}">
     <link rel="stylesheet" href="/static/register.css">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> -->
     <!-- JS -->
@@ -29,7 +29,6 @@
                 data: {
                     id_give: $('#userid').val(),
                     pw_give: $('#userpw').val(),
-                    email_give: $('#email').val()
                 },
                 success: function (response) {
                     if (response['result'] == 'success') {
@@ -51,23 +50,25 @@
 </head>
 
 <body>
-    <img class="SPA-picture"
-     src="https://github.com/Junghwan1106/1_JO_SPASIPA/blob/main/SPASIPA.png?raw=true">
+    <img class="SPA-picture" src="https://github.com/Junghwan1106/1_JO_SPASIPA/blob/main/SPASIPA.png?raw=true">
 
     <section class="sign-form">
         <h1>Sign up</h1>
-        <form action="">
+        <form id="form-box">
             <div class="int-area">
-                <input type="text" name="id" id="id"
-                autocomplete="off" required>
+                <input type="text" id="user-name" autocomplete="off" required>
                 <label for="id">USER NAME</label>
             </div>
-            <div class="id-btn-area">
-                <input type="button" id="check_id_btn" value="check" onclick="checkID()">
+            <div class="namecheck">
+                <div class="item" id="check">
+                    <input type="button" id="check_id_btn" value="check">
+                </div>
+                <div class="item" id="state" state="0">
+                    중복 확인해주세요!
+                </div>
             </div>
             <div class="int-area">
-                <input type="password" name="pw" id="pw"
-                autocomplete="off" required>
+                <input type="password" id="user-pwd" autocomplete="off" required>
                 <label for="pw">PASSWORD</label>
             </div>
             <div class="btn-area">
@@ -78,27 +79,7 @@
             <p id="join_btn">Are you Join? &nbsp;<a href="login">Login</a></p>
         </div>
     </section>
-
-    <script>
-        let id = $('#id');
-        let pw = $('#pw');
-        let btn = $('#btn');
-
-        $(btn).on('click', function() {
-            if($(id).val() =="") {
-                $(id).next('label').addClass('warning');
-                setTimeout(function(){
-                    $('label').removeClass('warning');
-                },1500);
-            }
-            else if($(pw).val() ==""){
-                $(pw).next('label').addClass('warning');
-                setTimeout(function(){
-                    $('label').removeClass('warning');
-                },1500);
-            }
-        });
-    </script>
+    <script src="{{url_for('static',filename='register.js')}}"></script>
 </body>
 
 </html>
