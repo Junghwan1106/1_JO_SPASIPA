@@ -8,9 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+        </script>
 
     <title>스파싯파 피디아</title>
     <!-- css 링크를 걸 때 아래와 같이 해줘야합니다. static이라는 폴더도 생성해줘야 합니다. -->
@@ -23,8 +24,26 @@
 
     <script>
         $(document).ready(function () {
-            listing();
+            auth();
         });
+
+        function auth() {
+            const token = $.cookie('mytoken');
+            $.ajax({
+                type: "GET",
+                url: "/auth",
+                data: { mytoken: token },
+                success: function(res){
+                    if(res["result"] == "success"){
+                        // console.log("succ");
+                        listing();
+                    }else{
+                        alert('로그인 부탁드립니다!');
+                        window.location.href = '/login';
+                    }
+                }
+            })
+        }
 
         function listing() {
             fetch('/main').then((res) => res.json()).then((data) => {
@@ -156,6 +175,7 @@
         <div class="status-bar__column">
             <div>
                 <img class="logo-img" src="https://github.com/Junghwan1106/1_JO_SPASIPA/blob/main/SPASIPA.png?raw=true"
+                   
                     alt="logo">
             </div>
             <div>
@@ -250,7 +270,7 @@
         <div class="tubes">
             <div class="row row-cols-1 row-cols-md-5 g-4" id="tube-box">
                 <div class="col">
-                    <div class="card h-100">
+                    <!-- <div class="card h-100">
                         <img src="https://i.ytimg.com/vi/ktZ3XR887wk/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBCCLDe2KYMfOt7yOV06cdTiGqVbA"
                             class="card-img-top">
                         <div class="card-body">
@@ -267,23 +287,11 @@
                                 <span id="like-num" class="likes">숫자</span>
                             </button>
                         </div>
-                    </div>
+                    </div> -->
+                    <h2 style="color: white"> loading ... </h2>
                 </div>
-
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"
-                            class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                            <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-                            <p>⭐⭐⭐</p>
-                            <p class="mycomment">나의 한줄 평을 씁니다</p>
-                        </div>
-                    </div>
-                </div>
-
-
+               
+                
             </div>
         </div>
 

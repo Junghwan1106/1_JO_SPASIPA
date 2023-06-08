@@ -3,71 +3,32 @@
 <html lang="en">
 
 <head>
-
-    <!-- Webpage Title -->
-    <title>Hello, world!</title>
-
-    <!-- Required meta tags -->
+    <title>스파싯파 피디아 login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bulma CSS -->
-    <link rel="stylesheet" href="{{url_for('static',filename='login.css')}}">  
-    <link rel="stylesheet" href="/static/login.css">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> -->
-    <!-- JS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='login.css')}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     <script>
-        {% if msg %}
-        alert("{{ msg }}")
-        {% endif %}
-        // ['쿠키'라는 개념에 대해 알아봅시다]
-        // 로그인을 구현하면, 반드시 쿠키라는 개념을 사용합니다.
-        // 페이지에 관계없이 브라우저에 임시로 저장되는 정보입니다. 키:밸류 형태(딕셔너리 형태)로 저장됩니다.
-        // 쿠키가 있기 때문에, 한번 로그인하면 네이버에서 다시 로그인할 필요가 없는 것입니다.
-        // 브라우저를 닫으면 자동 삭제되게 하거나, 일정 시간이 지나면 삭제되게 할 수 있습니다.
-        function login() {
-            $.ajax({
-                type: "POST",
-                url: "/api/login",
-                data: { id_give: $('#userid').val(), pw_give: $('#userpw').val() },
-                success: function (response) {
-                    if (response['result'] == 'success') {
-                        // 로그인이 정상적으로 되면, 토큰을 받아옵니다.
-                        // 이 토큰을 mytoken이라는 키 값으로 쿠키에 저장합니다.
-                        $.cookie('mytoken', response['token']);
-
-                        alert('로그인 완료!')
-                        window.location.href = '/'
-                    } else {
-                        // 로그인이 안되면 에러메시지를 띄웁니다.
-                        alert(response['msg'])
-                    }
-                }
-            })
-        }
-
+        $(document).ready(function () {
+        });
     </script>
-
-
-    </script>
-
 </head>
 
 <body>
+    <img class="SPA-picture"
+    src="https://github.com/Junghwan1106/1_JO_SPASIPA/blob/main/SPASIPA.png?raw=true">
+
     <section class="login-form">
-        <h1>SPASIPA</h1>
-        <form action="">
+        <h1>login</h1>
+        <form id="form-box">
             <div class="int-area">
-                <input type="text" name="id" id="id"
-                autocomplete="off" required>
+                <input type="text" id="user-name" autocomplete="off" required>
                 <label for="id">USER NAME</label>
             </div>
             <div class="int-area">
-                <input type="password" name="pw" id="pw"
-                autocomplete="off" required>
+                <input type="password" id="user-pwd" autocomplete="off" required>
                 <label for="pw">PASSWORD</label>
             </div>
             <div class="btn-area">
@@ -75,33 +36,10 @@
             </div>
         </form>
         <div class="caption">
-            <a href="">Forgot Password?</a>
-        </div>
-        <div class="caption">
             <a href="register">Not a Memer?</a>
         </div>
     </section>
-
-    <script>
-        let id = $('#id');
-        let pw = $('#pw');
-        let btn = $('#btn');
-
-        $(btn).on('click', function() {
-            if($(id).val() =="") {
-                $(id).next('label').addClass('warning');
-                setTimeout(function(){
-                    $('label').removeClass('warning');
-                },1500);
-            }
-            else if($(pw).val() ==""){
-                $(pw).next('label').addClass('warning');
-                setTimeout(function(){
-                    $('label').removeClass('warning');
-                },1500);
-            }
-        });
-    </script>
 </body>
+<script src="{{url_for('static',filename='login.js')}}"></script>
 
 </html>
