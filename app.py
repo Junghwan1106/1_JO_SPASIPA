@@ -69,17 +69,18 @@ def tube_post():
 #################################
 ##  HTML을 주는 부분             ##
 #################################
-@app.route('/jwt')
+@app.route('/auth')
 def jwtfunc():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"id": payload['id']})
-        return render_template('index.html', nickname=user_info["nick"])
+        return jsonify({'result': 'success'})
     except jwt.ExpiredSignatureError:
-        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+        return jsonify({'result': 'fail'})
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+        return jsonify({'result': 'fail'})
+
     
 @app.route('/login')
 def login():
@@ -103,11 +104,10 @@ def register():
 def api_register():
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
-    email_receive = request.form['email_give']
 
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
-    db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'email': email_receive})
+    db.user.insert_one({'id': id_receive, 'pw': pw_hash})
 
     return jsonify({'result': 'success'})
 
@@ -133,7 +133,7 @@ def api_login():
         # exp에는 만료시간을 넣어줍니다. 만료시간이 지나면, 시크릿키로 토큰을 풀 때 만료되었다고 에러가 납니다.
         payload = {
             'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=5)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
