@@ -167,7 +167,7 @@ a:active {
 .col {
     position: relative;
 }
-.card{
+.card>img{
     cursor: pointer;
 }
 .card-body {
@@ -197,7 +197,7 @@ a:active {
     background: none;
 }
 .like-btn-done{
-    
+
 }
 .like-btn>i{
     margin: 0 3px;
