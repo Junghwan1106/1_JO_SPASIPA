@@ -1,17 +1,20 @@
 <!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
 
     <!-- Webpage Title -->
-    <title>Hello, world!</title>
+    <title>SPASIPA회원가입</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='register.css')}}">  
+    <link rel="stylesheet" href="/static/register.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> -->
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
@@ -39,56 +42,63 @@
             })
         }
 
+
     </script>
+
+
+    </script>
+
 </head>
 
 <body>
-    <div class="section has-text-centered">
-        <h1 class="title">Join</h1>
-        <div class="container" style="width:60%">
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label" for="userid">ID</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <input type="text" class="input" id="userid" aria-describedby="emailHelp" placeholder="ID">
-                            <input type="button" id="check_id_btn" value="check" onclick="checkID()">
-                        </div>
-                    </div>
-                </div>
+    <img class="SPA-picture"
+     src="https://github.com/Junghwan1106/1_JO_SPASIPA/blob/main/SPASIPA.png?raw=true">
+
+    <section class="sign-form">
+        <h1>Sign up</h1>
+        <form action="">
+            <div class="int-area">
+                <input type="text" name="id" id="id"
+                autocomplete="off" required>
+                <label for="id">USER NAME</label>
             </div>
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label" for="userpw">PW</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <input type="password" class="input" id="userpw" placeholder="Password">
-                        </div>
-                    </div>
-                </div>
+            <div class="id-btn-area">
+                <input type="button" id="check_id_btn" value="check" onclick="checkID()">
             </div>
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label" for="email">Email</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <input type="text" class="input" id="email" placeholder="Email">
-                            <input type="button" id="ckeck_email-btn" value="check" onclick="checkEmail()">
-                        </div>
-                    </div>
-                </div>
+            <div class="int-area">
+                <input type="password" name="pw" id="pw"
+                autocomplete="off" required>
+                <label for="pw">PASSWORD</label>
             </div>
-            <button class="button is-primary" onclick="register()">Submit</button>
+            <div class="btn-area">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <div class="caption">
             <p id="join_btn">Are you Join? &nbsp;<a href="login">Login</a></p>
-            </p>
         </div>
-    </div>
+    </section>
+
+    <script>
+        let id = $('#id');
+        let pw = $('#pw');
+        let btn = $('#btn');
+
+        $(btn).on('click', function() {
+            if($(id).val() =="") {
+                $(id).next('label').addClass('warning');
+                setTimeout(function(){
+                    $('label').removeClass('warning');
+                },1500);
+            }
+            else if($(pw).val() ==""){
+                $(pw).next('label').addClass('warning');
+                setTimeout(function(){
+                    $('label').removeClass('warning');
+                },1500);
+            }
+        });
+    </script>
 </body>
 
 </html>
