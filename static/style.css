@@ -1,19 +1,28 @@
 * {
     font-family: 'Gowun Dodum', sans-serif;
 }
-body{
-    background : #141414;
+body {
+    background: #141414;
 }
-a {color: #fff; text-decoration: none; outline: none}
+a {
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+}
 
- a:hover, a:active {text-decoration: none; color:#ff1c1c; background-color:none;}
+a:hover,
+a:active {
+    text-decoration: none;
+    color: #ff1c1c;
+    background-color: none;
+}
 
 /* 최상단 상태바 */
-.status-bar{
+.status-bar {
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     padding: 3px 3px;
     box-sizing: border-box;
     position: fixed;
@@ -23,13 +32,13 @@ a {color: #fff; text-decoration: none; outline: none}
     border: 1px solid rgb(255, 0, 0);
 }
 
-.status-bar__column{
+.status-bar__column {
     display: flex;
     justify-content: space-between;
     width: 33%;
     padding: 20px 20px 20px 20px;
 }
-.logo-img{
+.logo-img {
     padding-top: 15px;
     width: 180px;
     position: relative;
@@ -51,13 +60,13 @@ a {color: #fff; text-decoration: none; outline: none}
     align-items: center;
     justify-content: center;
 }
-.mytitle-container-h{
+.mytitle-container-h {
     text-align: center;
 }
-.mytitle-h1{
+.mytitle-h1 {
     font-size: 50px;
 }
-.mytitle-h2{
+.mytitle-h2 {
     font-size: 18px;
 }
 
@@ -66,7 +75,7 @@ a {color: #fff; text-decoration: none; outline: none}
     height: 50px;
     font-size: 25px;
     letter-spacing: 4px;
-    background-color: rgb(70,69,69,0.8);
+    background-color: rgb(70, 69, 69, 0.8);
     color: white;
 
     border-radius: 10px;
@@ -79,14 +88,12 @@ a {color: #fff; text-decoration: none; outline: none}
     border: 2px solid white;
 }
 
-
-
 .tubes {
     margin: 20px auto 0px auto;
     width: 95%;
     max-width: 2000px;
 }
-.row{
+.row {
     overflow: visible;
 }
 .mypost {
@@ -108,26 +115,25 @@ a {color: #fff; text-decoration: none; outline: none}
     margin-top: 20px;
 }
 
-.mybtns>button {
+.mybtns > button {
     margin-right: 10px;
 }
 
-.top{
-    position:relative;
+.top {
+    position: relative;
     margin-top: -10px;
     margin-bottom: 10px;
     border-bottom: 1px solid white;
 }
-.top-title{
+.top-title {
     margin: 10px;
     text-align: center;
     font-size: 45px;
     font-weight: 700;
     color: #fff;
-    
 }
 
-.top-tubes{
+.top-tubes {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,10 +141,13 @@ a {color: #fff; text-decoration: none; outline: none}
     box-sizing: border-box;
     margin: 10px;
 }
-.top-tube{
+
+.top-tube {
     margin-right: 70px;
+    cursor: pointer;
 }
-.top-tube>img{
+
+.top-tube > img {
     width: 150px;
     height: 200px;
     object-fit: cover;
@@ -146,49 +155,51 @@ a {color: #fff; text-decoration: none; outline: none}
     border-radius: 10px;
 }
 
-#view-all{
-    position:absolute;
+#view-all {
+    position: absolute;
     bottom: -20px;
     left: 50%;
 }
 
-.tubes{
+.tubes {
     margin-top: 30px;
 }
-.col{
+.col {
     position: relative;
+}
+.card{
+    cursor: pointer;
 }
 .card-body {
     padding: 13px;
 }
-.title-info{
+.title-info {
     display: flex;
     justify-content: left;
     align-items: center;
 }
-.title-info>img{
+.title-info > img {
     width: 50px;
 }
 .mycomment {
     margin-top: 5px;
     color: gray;
 }
-.user{
-    position:absolute;
+.user {
+    position: absolute;
     bottom: -5px;
     left: 60%;
 }
-.like-btn{
+.like-btn {
     border-radius: 15px;
     border: 1px solid rgba(20, 20, 20, 0.3);
     box-shadow: 0 0 1px 0;
     background: none;
 }
-.like-btn>i{
+.like-btn > i {
     margin: 0 3px;
     color: #ff1c1c;
 }
-.likes{
+.likes {
     margin: 0 3px;
 }
-

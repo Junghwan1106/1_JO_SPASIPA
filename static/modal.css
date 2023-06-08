@@ -14,8 +14,11 @@
     background-color: #fefefe;
     border: 1px solid #888;
     
-    position: relative;
-    margin: 2% auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
     width: 70%;
     height: 0;
     padding-bottom: 40%;
@@ -44,8 +47,4 @@
     height: 100%;
     top: 0;
     left: 0;
-}
-
-.top > .top-tubes > .top-tube {
-    cursor: pointer;
 }
