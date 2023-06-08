@@ -76,12 +76,13 @@ def like():
     done_receive = request.form['done_give'] 
     url_receive = request.form['url_give']
     like_receive = request.form['like_give']
-    if done_receive == "0" :
-        db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)+1}})
-        db.tubes.update_one({'url':url_receive},{'$set':{'done':1}})
-    else : 
-        db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)-1}})
-        db.tubes.update_one({'url':url_receive},{'$set':{'done':0}})
+    db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)+1}})
+    # if done_receive == "0" :
+    #     db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)+1}})
+    #     db.tubes.update_one({'url':url_receive},{'$set':{'done':1}})
+    # else : 
+    #     db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)-1}})
+    #     db.tubes.update_one({'url':url_receive},{'$set':{'done':0}})
             
         
    
