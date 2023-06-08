@@ -123,6 +123,13 @@ def api_register():
 
     return jsonify({'result': 'success'})
 
+@app.route('/api/register/usercheck', methods=['POST'])
+def api_usercheck():
+    id_receive = request.form['id_give']
+    a = db.user.find_one({'id': id_receive})
+    if( not a ):
+        return jsonify({'result':'0'})
+    return jsonify({'result':'1'})
 
 # [로그인 API]
 # id, pw를 받아서 맞춰보고, 토큰을 만들어 발급합니다.
