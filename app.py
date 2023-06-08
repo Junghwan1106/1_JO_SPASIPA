@@ -103,11 +103,11 @@ def register():
 def api_register():
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
-    nickname_receive = request.form['nickname_give']
+    email_receive = request.form['email_give']
 
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
-    db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'nick': nickname_receive})
+    db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'email': email_receive})
 
     return jsonify({'result': 'success'})
 
