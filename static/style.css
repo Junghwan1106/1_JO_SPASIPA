@@ -184,6 +184,8 @@ a {color: #fff; text-decoration: none; outline: none}
     box-shadow: 0 0 1px 0;
     background: none;
 }
+.like-btn-done{
+}
 .like-btn>i{
     margin: 0 3px;
     color: #ff1c1c;

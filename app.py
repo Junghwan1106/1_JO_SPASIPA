@@ -64,6 +64,7 @@ def tube_post():
         'comment':comment_receive,
         'star': star_receive,
         # 'titleimage':titleimage,
+        'done': 0,
         'likes': 0
     }
     db.tubes.insert_one(doc)
@@ -72,10 +73,18 @@ def tube_post():
 
 @app.route("/main/likes", methods=["POST"])
 def like():
+    done_receive = request.form['done_give'] 
     url_receive = request.form['url_give']
     like_receive = request.form['like_give']
-
-    db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)+1}})
+    if done_receive == "0" :
+        db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)+1}})
+        db.tubes.update_one({'url':url_receive},{'$set':{'done':1}})
+    else : 
+        db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)-1}})
+        db.tubes.update_one({'url':url_receive},{'$set':{'done':0}})
+            
+        
+   
     return  ('',204)   #아무것도 리턴하지 않는 방법.
 # 로그인 관련
 #################################
