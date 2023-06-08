@@ -178,4 +178,17 @@ a {color: #fff; text-decoration: none; outline: none}
     bottom: -5px;
     left: 60%;
 }
+.like-btn{
+    border-radius: 15px;
+    border: 1px solid rgba(20, 20, 20, 0.3);
+    box-shadow: 0 0 1px 0;
+    background: none;
+}
+.like-btn>i{
+    margin: 0 3px;
+    color: #ff1c1c;
+}
+.likes{
+    margin: 0 3px;
+}
 

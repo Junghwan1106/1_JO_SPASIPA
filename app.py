@@ -51,20 +51,32 @@ def tube_post():
     ogtitle= soup.select_one('meta[property="og:title"]')['content']
     ogimage= soup.select_one('meta[property="og:image"]')['content']
     ogdesc= soup.select_one('meta[property="og:description"]')['content']
-    titleimage = soup.select_one('img#img.style-scope.yt-img-shadow')
+    ogid= soup.select_one('meta[property="fb:app_id"]')['content']
+    # titleimage = soup.select_one('#owner > ytd-video-owner-renderer > a >yt-img-shadow > img')
+    
 
     doc = {
+        'ogid':ogid,
         'title':ogtitle,
         'desc':ogdesc,
         'image':ogimage,
-        # 'url':url_receive, 안 필요함
+        'url':url_receive, 
         'comment':comment_receive,
         'star': star_receive,
-        'titleimage':titleimage
+        # 'titleimage':titleimage,
+        'likes': 0
     }
     db.tubes.insert_one(doc)
 
     return jsonify({'msg':'저장 완료!'})
+
+@app.route("/main/likes", methods=["POST"])
+def like():
+    url_receive = request.form['url_give']
+    like_receive = request.form['like_give']
+
+    db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)+1}})
+    return  ('',204)   #아무것도 리턴하지 않는 방법.
 # 로그인 관련
 #################################
 ##  HTML을 주는 부분             ##

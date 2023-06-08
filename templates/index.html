@@ -14,11 +14,12 @@
 
     <title>스파싯파 피디아</title>
     <!-- css 링크를 걸 때 아래와 같이 해줘야합니다. static이라는 폴더도 생성해줘야 합니다. -->
-    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">  
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
     <link rel="stylesheet" href="/static/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static',filename='modal.css')}}">
     <script src="{{url_for('static',filename='modal.js')}}"></script>
+    <script src="https://kit.fontawesome.com/e34bdfda62.js" crossorigin="anonymous"></script>
 
     <script>
         $(document).ready(function () {
@@ -31,14 +32,20 @@
 
                 $('#tube-box').empty()
                 rows.forEach((a) => {
+                    let url = a['url']
                     let title = a['title']
                     let image = a['image']
                     let desc = a['desc']
                     let comment = a['comment']
                     let star = a['star']
-                    let titleimage = a['titleimage']
+                    let tube_likes = a['likes']
                     let star_repeat = '⭐'.repeat(star)
+                    console.log(tube_likes,url)
 
+
+                    // let titleimage = a['titleimage']
+                    // console.log(titleimage)
+                    // <img src="${titleimage}" alt="">
                     let temp_html = `
                     <div class="col">
                         <div class="card h-100">
@@ -46,12 +53,16 @@
                                 class="card-img-top">
                             <div class="card-body">
                                 <div class="title-info">
-                                    <img src="${titleimage}" alt="">
+    
                                     <h5 class="card-title">${title}</h5>
                                 </div>
                                 <p class="mycomment">${comment}</p>
                                 <p class="star">${star_repeat}</p>
                                 <p class="user">작성자</p>
+                                <button onclick="like(${tube_likes},'${url}')" class="like-btn">
+                                <i id="like-icon" class="fa-regular fa-heart"></i>
+                                <span class="likes">${tube_likes}</span>
+                            </button>
                             </div>
                         </div>
                     </div>
@@ -88,6 +99,43 @@
         function close_box() {
             $('#post-box').hide()
         }
+
+        function like(tube_likes,url) {
+            // let likeClass = $('#like-icon').attr('class')
+
+            // if (likeClass == 'fa-solid fa-heart') {
+            //     $('#like-icon').attr('class', 'fa-regular fa-heart')
+            // } else {
+            //     $('#like-icon').attr('class', 'fa-solid fa-heart')
+            // }
+
+            
+            $.ajax({
+                type: "POST",
+                url: "/main/likes",
+                data: {
+                    like_give: tube_likes, 
+                    url_give: url
+                },
+                success: function () {
+
+                    window.location.reload()
+                }
+            });
+
+            // let formData = new FormData();
+            // formData.append('url_give', url)
+            // formData.append('like_give', tube_likes)
+
+            // fetch('/main/likes', {
+            //     method: "POST",
+            //     body: formData
+            // }).then((res) => res.json()).then((data) => {
+            //     alert(data['msg'])
+            //     window.location.reload()
+            // })
+
+        }
     </script>
 </head>
 
@@ -107,28 +155,31 @@
     <div class="status-bar">
         <div class="status-bar__column">
             <div>
-                <img class="logo-img" src="https://github.com/Junghwan1106/1_JO_SPASIPA/blob/main/SPASIPA.png?raw=true" alt="logo">
+                <img class="logo-img" src="https://github.com/Junghwan1106/1_JO_SPASIPA/blob/main/SPASIPA.png?raw=true"
+                    alt="logo">
             </div>
             <div>
             </div>
-            
+
         </div>
         <div class="status-bar__column">
 
         </div>
         <div class="status-bar__column">
             <div></div>
-            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-              </svg>
+            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                </svg>
             </a>
         </div>
     </div>
 
     <!-- 타이틀 창 -->
     <div class="mytitle">
-        
+
         <div class="mytitle-container">
             <div>
 
@@ -140,10 +191,10 @@
             <div>
                 <button class="pick-btn" onclick="open_box()">Pick</button>
             </div>
-           
+
         </div>
-        
-        
+
+
     </div>
 
     <!-- 기록하기 창 -->
@@ -183,16 +234,18 @@
             <div class="top-tubes">
                 <div class="top-tube" id="https://www.youtube.com/watch?v=NkxSI_nUpyc" onclick="openModal(this)">
                     <img src="https://www.netflix.com/tudum/top10/images/big_numbers/1.png" alt="number">
-                    <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA" alt="tube image">
+                    <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"
+                        alt="tube image">
                 </div>
                 <div class="top-tube">
                     <img src="https://www.netflix.com/tudum/top10/images/big_numbers/2.png" alt="number">
-                    <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA" alt="tube image">
+                    <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"
+                        alt="tube image">
                 </div>
             </div>
             <button id="view-all" class="btn btn-dark">전체보기</button>
         </div>
-        
+
         <!-- 튜브 목록 -->
         <div class="tubes">
             <div class="row row-cols-1 row-cols-md-5 g-4" id="tube-box">
@@ -202,16 +255,21 @@
                             class="card-img-top">
                         <div class="card-body">
                             <div class="title-info">
-                                <img src="https://yt3.ggpht.com/ytc/AGIKgqMOLbjaL9SFdVNEhFJ5zjNHyD4bT83Um6YRINj_Dg=s68-c-k-c0x00ffffff-no-rj" alt="">
+                                <img src="https://yt3.ggpht.com/ytc/AGIKgqMOLbjaL9SFdVNEhFJ5zjNHyD4bT83Um6YRINj_Dg=s68-c-k-c0x00ffffff-no-rj"
+                                    alt="">
                                 <h5 class="card-title">영화 제목이 들어갑니다</h5>
                             </div>
                             <p class="mycomment">나의 한줄 평을 씁니다</p>
                             <p class="star">⭐⭐⭐</p>
                             <p class="user">작성자</p>
+                            <button onclick="like(url)" class="like-btn">
+                                <i id="like-icon" class="fa-regular fa-heart"></i>
+                                <span id="like-num" class="likes">숫자</span>
+                            </button>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col">
                     <div class="card h-100">
                         <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"
@@ -224,15 +282,15 @@
                         </div>
                     </div>
                 </div>
-               
-                
+
+
             </div>
         </div>
 
 
-        
+
     </div>
-    
+
 </body>
 
 </html>
