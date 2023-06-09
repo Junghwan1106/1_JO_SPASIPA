@@ -52,18 +52,20 @@
                 let rows = data['result']
                 console.log(rows)
                 $('#top-tubes').empty()
+                let num = 1
                 rows.forEach((a)=>{
                     let order_num = a['num']
                     let image = a['image']
                     let url = a['url']
                     let temp_html = `
                         <div class="top-tube" id='${url}' onclick="openModal(this)">
-                            <img src="https://www.netflix.com/tudum/top10/images/big_numbers/${order_num}.png" alt="number">
+                            <img src="https://www.netflix.com/tudum/top10/images/big_numbers/${num}.png" alt="number">
                             <img src="${image}"
                                 alt="tube image">
                         </div>
                     `
                     $('#top-tubes').append(temp_html)
+                    num = num+1
                 })
                     
             })
