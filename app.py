@@ -70,9 +70,6 @@ def tube_post():
         'likes': 0
     }
     db.tubes.insert_one(doc)
-    db.tubes_ordered.insert_one(doc)
-
-
 
     return jsonify({'msg':'저장 완료!'})
 
@@ -82,7 +79,6 @@ def like():
     url_receive = request.form['url_give']
     like_receive = request.form['like_give']
     db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)+1, 'done':1}})
-    db.tubes_ordered.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)+1, 'done':1}})
     # if done_receive == "0" :
     #     db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)+1}})
     #     db.tubes.update_one({'url':url_receive},{'$set':{'done':1}})
@@ -214,9 +210,8 @@ def tube_get():
 
 @app.route("/main/top", methods=["GET"])
 def tube_get_top():
-    all_tubes_top = list(db.tubes_ordered.find({},{'_id':False}))
+    all_tubes_top = list(db.tubes.find({},{'_id':False}).sort("likes", -1))
     return jsonify({'result': all_tubes_top})
-
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
