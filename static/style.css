@@ -206,6 +206,7 @@ a:active {
     border: 1px solid rgba(20, 20, 20, 0.3);
     box-shadow: 0 0 4px 0 rgba(165, 164, 164, 0.3);
     background: none;
+    color: white;
 }
 .like-btn-done{
     

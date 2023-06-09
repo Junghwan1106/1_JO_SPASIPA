@@ -248,20 +248,22 @@
 
     <!-- 기록하기 창 -->
     <div class="mypost" id="post-box">
-        <div class="form-floating mb-3">
-            <input id="url" type="email" class="form-control" placeholder="name@example.com">
-            <label>유튜브URL</label>
-        </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">별점</label>
-            <select class="form-select" id="star">
-                <option selected>-- 선택하기 --</option>
-                <option value="1">⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="5">⭐⭐⭐⭐⭐</option>
-            </select>
+        <div class="post-container">
+            <div class="form-floating mb-3">
+                <input id="url" type="email" class="form-control" placeholder="name@example.com">
+                <label> YouTube URL </label>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">별점</label>
+                <select class="form-select" id="star">
+                    <option selected>-- 선택하기 --</option>
+                    <option value="1">⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                </select>
+            </div>
         </div>
         <div class="form-floating">
             <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
