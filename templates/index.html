@@ -50,6 +50,7 @@
         function listing() {
             fetch('/main').then((res) => res.json()).then((data) => {
                 let rows = data['result']
+                console.log(rows)
 
                 $('#tube-box').empty()
                 rows.forEach((a) => {
@@ -62,11 +63,21 @@
                     let tube_likes = a['likes']
                     let star_repeat = '⭐'.repeat(star)
                     let done_like = a['done']
-                    console.log(tube_likes, url, done_like)
+                    // console.log(tube_likes, url, done_like)
 
                     // let titleimage = a['titleimage']
                     // console.log(titleimage)
                     // <img src="${titleimage}" alt="">
+                    let temp_html1 = `
+                    <div class="top-tube" id="https://www.youtube.com/watch?v=NkxSI_nUpyc" onclick="openModal(this)">
+                        <img src="https://www.netflix.com/tudum/top10/images/big_numbers/1.png" alt="number">
+                        <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"
+                            alt="tube image">
+                    </div>
+                    `
+                    
+
+
                     let temp_html = ``
                     if (done_like == 0) {
                         let temp_html = `
@@ -113,6 +124,8 @@
                     `
                     $('#tube-box').append(temp_html)
                     }
+
+                    
 
                 })
             })
@@ -187,7 +200,8 @@
 </head>
 
 <body>
-
+    <!-- 전체보기 버튼 -->
+    <button id="view-all" class="btn btn-dark">전체보기</button>
     <!-- 모달 부분 -->
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -299,7 +313,7 @@
                         alt="tube image">
                 </div>
             </div>
-            <button id="view-all" class="btn btn-dark">전체보기</button>
+            
         </div>
 
         <!-- 튜브 목록 -->
@@ -331,8 +345,7 @@
             </div>
         </div>
 
-
-
+        
     </div>
 
 </body>

@@ -13,7 +13,7 @@ a {
 a:hover,
 a:active {
     text-decoration: none;
-    color: #ff1c1c;
+    color: #E50327;
     background-color: none;
 }
 
@@ -59,6 +59,7 @@ a:active {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 1px -1px gray;
 }
 
 .mytitle-container-h {
@@ -82,13 +83,14 @@ a:active {
     width: 100px;
     height: 50px;
     font-size: 25px;
+    font-weight: 700;
     letter-spacing: 4px;
     background-color: rgba(70, 69, 70, 0.151);
     color: rgb(255, 0, 255);
 
 
     border-radius: 10px;
-    border: 1px solid white;
+    border: 1px solid rgb(0, 0, 0);
 
     margin-top: 10px;
 }
@@ -142,8 +144,8 @@ a:active {
 .top {
     position: relative;
     margin-top: -10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid white;
+    margin-bottom: 30px;
+    
 }
 .top-title {
     margin: 10px;
@@ -168,17 +170,18 @@ a:active {
 }
 
 .top-tube > img {
-    width: 150px;
+    width: 200px;
     height: 200px;
     object-fit: cover;
-    margin-right: -40px;
+    margin-right: -15%;
     border-radius: 10px;
 }
 
 #view-all {
-    position: absolute;
-    bottom: -20px;
+    position: fixed;
+    bottom: 20px;
     left: 50%;
+    z-index: 3;
 }
 
 .tubes {

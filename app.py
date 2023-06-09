@@ -68,6 +68,19 @@ def tube_post():
         'likes': 0
     }
     db.tubes.insert_one(doc)
+    doc_ordered = {
+        'ogid':ogid,
+        'title':ogtitle,
+        'desc':ogdesc,
+        'image':ogimage,
+        'url':url_receive, 
+        'comment':comment_receive,
+        'star': star_receive,
+        # 'titleimage':titleimage,
+        'done': 0,
+        'likes': 0
+    }
+    db.tubes_ordered.insert_one(doc_ordered)
 
     return jsonify({'msg':'저장 완료!'})
 
