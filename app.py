@@ -206,6 +206,7 @@ def api_valid():
 @app.route("/main", methods=["GET"])
 def tube_get():
     all_movies = list(db.tubes.find({},{'_id':False}))
+    all_movies.reverse()
     return jsonify({'result': all_movies})
 
 @app.route("/main/top", methods=["GET"])

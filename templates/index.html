@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+        </script>
 
     <title>스파싯파 피디아</title>
     <!-- css 링크를 걸 때 아래와 같이 해줘야합니다. static이라는 폴더도 생성해줘야 합니다. -->
@@ -52,20 +52,21 @@
                 let rows = data['result']
                 console.log(rows)
                 $('#top-tubes').empty()
-                rows.forEach((a)=>{
+                rows.forEach((a, i) => {
+                    if (i > 2) return;
                     let order_num = a['num']
                     let image = a['image']
                     let url = a['url']
                     let temp_html = `
                         <div class="top-tube" id='${url}' onclick="openModal(this)">
-                            <img src="https://www.netflix.com/tudum/top10/images/big_numbers/${order_num}.png" alt="number">
+                            <img src="https://www.netflix.com/tudum/top10/images/big_numbers/${i+1}.png" alt="number">
                             <img src="${image}"
                                 alt="tube image">
                         </div>
                     `
                     $('#top-tubes').append(temp_html)
                 })
-                    
+
             })
         }
 
@@ -75,7 +76,7 @@
                 console.log(rows)
 
                 $('#tube-box').empty()
-                rows.forEach((a) => {
+                rows.forEach((a, i) => {
                     let url = a['url']
                     let title = a['title']
                     let image = a['image']
@@ -85,15 +86,8 @@
                     let tube_likes = a['likes']
                     let star_repeat = '⭐'.repeat(star)
                     let done_like = a['done']
-                    // console.log(tube_likes, url, done_like)
 
-                    // let titleimage = a['titleimage']
-                    // console.log(titleimage)
-                    // <img src="${titleimage}" alt="">
-                    
-                    let temp_html = ``
-                    if (done_like == 0) {
-                        let temp_html = `
+                    let temp_html = `
                             <div class="col">
                                 <div class="card h-100">
                                     <img src="${image}"
@@ -105,45 +99,19 @@
                                         <p class="mycomment">${comment}</p>
                                         <p class="star">${star_repeat}</p>
                                         <p class="user">작성자</p>
-                                        <button onclick="like(${tube_likes},'${url}',${done_like})" class="like-btn">
-                                        <i id="like-icon" class='fa-regular fa-heart'></i>
-                                        <span class="likes">${tube_likes}</span>
-                                    </button>
-                                    </div>
-                                </div>
-                            </div>
+                                        ${+done_like == 1 ? `<button onclick="like(${tube_likes},'${url}',${done_like})" class="like-btn"> <i id="like-icon" class='fa-solid fa-heart'></i>` : `<button onclick="like(${tube_likes},'${url}',${done_like})" class="like-btn like-btn-done">
+                                            <i id="like-icon" class='fa-regular fa-heart'></i>`}
+                            <span class="likes">${tube_likes}</span>
+                        </ >
+                        </div >
+                                </div >
+                            </div >
                     `
                     $('#tube-box').append(temp_html)
-                    } else {
-                        let temp_html = `
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="${image}"
-                                        id=${url} onclick="openModal(this)" class="card-img-top">
-                                    <div class="card-body">
-                                        <div class="title-info">
-                                            <h5 class="card-title">${title}</h5>
-                                        </div>
-                                        <p class="mycomment">${comment}</p>
-                                        <p class="star">${star_repeat}</p>
-                                        <p class="user">작성자</p>
-                                        <button onclick="like(${tube_likes},'${url}',${done_like})" class="like-btn like-btn-done">
-                                        <i id="like-icon" class='fa-solid fa-heart'></i>
-                                        <span class="likes">${tube_likes}</span>
-                                    </button>
-                                    </div>
-                                </div>
-                            </div>
-                    `
-                    $('#tube-box').append(temp_html)
-                    }
-
-                    
-
                 })
             })
         }
-        
+
 
         function posting() {
 
@@ -215,7 +183,7 @@
 
 <body>
     <!-- 전체보기 버튼 -->
-    <button id="view-all" class="btn btn-dark">전체보기</button>
+    <button id="view-all" class="btn btn-dark">더보기</button>
     <!-- 모달 부분 -->
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -311,18 +279,14 @@
                 TOP N
             </div>
             <div id="top-tubes">
-                <div class="top-tube" id="https://www.youtube.com/watch?v=NkxSI_nUpyc" onclick="openModal(this)">
+                <!-- <div class="top-tube" id="https://www.youtube.com/watch?v=NkxSI_nUpyc" onclick="openModal(this)">
                     <img src="https://www.netflix.com/tudum/top10/images/big_numbers/1.png" alt="number">
                     <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"
                         alt="tube image">
-                </div>
-                <div class="top-tube">
-                    <img src="https://www.netflix.com/tudum/top10/images/big_numbers/2.png" alt="number">
-                    <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"
-                        alt="tube image">
-                </div>
+                </div> -->
+                <h2 style="color: white"> loading ... </h2>
             </div>
-            
+
         </div>
 
         <!-- 튜브 목록 -->
@@ -354,7 +318,7 @@
             </div>
         </div>
 
-        
+
     </div>
 
 </body>
