@@ -38,12 +38,34 @@
                 success: function (res) {
                     if (res["result"] == "success") {
                         // console.log("succ");
+                        listingTop();
                         listing();
                     } else {
                         alert('로그인 부탁드립니다!');
                         window.location.href = '/login';
                     }
                 }
+            })
+        }
+        function listingTop() {
+            fetch('/main/top').then((res) => res.json()).then((data) => {
+                let rows = data['result']
+                console.log(rows)
+                $('#top-tubes').empty()
+                rows.forEach((a)=>{
+                    let order_num = a['num']
+                    let image = a['image']
+                    let url = a['url']
+                    let temp_html = `
+                        <div class="top-tube" id='${url}' onclick="openModal(this)">
+                            <img src="https://www.netflix.com/tudum/top10/images/big_numbers/${order_num}.png" alt="number">
+                            <img src="${image}"
+                                alt="tube image">
+                        </div>
+                    `
+                    $('#top-tubes').append(temp_html)
+                })
+                    
             })
         }
 
@@ -68,16 +90,7 @@
                     // let titleimage = a['titleimage']
                     // console.log(titleimage)
                     // <img src="${titleimage}" alt="">
-                    let temp_html1 = `
-                    <div class="top-tube" id="https://www.youtube.com/watch?v=NkxSI_nUpyc" onclick="openModal(this)">
-                        <img src="https://www.netflix.com/tudum/top10/images/big_numbers/1.png" alt="number">
-                        <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"
-                            alt="tube image">
-                    </div>
-                    `
                     
-
-
                     let temp_html = ``
                     if (done_like == 0) {
                         let temp_html = `
@@ -130,6 +143,7 @@
                 })
             })
         }
+        
 
         function posting() {
 
@@ -296,7 +310,7 @@
             <div class="top-title">
                 TOP N
             </div>
-            <div class="top-tubes">
+            <div id="top-tubes">
                 <div class="top-tube" id="https://www.youtube.com/watch?v=NkxSI_nUpyc" onclick="openModal(this)">
                     <img src="https://www.netflix.com/tudum/top10/images/big_numbers/1.png" alt="number">
                     <img src="https://i.ytimg.com/vi/SMI8DuSyYhw/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBqdz9JgBJhZSniolQfBnCRD2cVFA"

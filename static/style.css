@@ -136,7 +136,7 @@ a:active {
     color: #fff;
 }
 
-.top-tubes {
+#top-tubes {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -147,7 +147,7 @@ a:active {
 
 .top-tube {
     margin-right: 70px;
-    cursor: pointer;
+    
 }
 
 .top-tube > img {
@@ -156,6 +156,7 @@ a:active {
     object-fit: cover;
     margin-right: -15%;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 #view-all {
