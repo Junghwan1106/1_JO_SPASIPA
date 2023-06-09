@@ -96,6 +96,7 @@ a:active {
 .row {
     overflow: visible;
 }
+
 .mypost {
     width: 95%;
     max-width: 500px;
@@ -167,10 +168,20 @@ a:active {
 .col {
     position: relative;
 }
+.card{
+    border: none;
+    box-shadow: 0 0 5px 0 rgba(247, 242, 242, 0.5);
+    transition: all 0.2s ease-in-out;
+}
+.card:hover{
+    scale: 1.02;
+}
 .card>img{
     cursor: pointer;
 }
 .card-body {
+    background: #141414;
+    color: white;
     padding: 13px;
 }
 .title-info {
@@ -193,11 +204,11 @@ a:active {
 .like-btn {
     border-radius: 15px;
     border: 1px solid rgba(20, 20, 20, 0.3);
-    box-shadow: 0 0 1px 0;
+    box-shadow: 0 0 4px 0 rgba(165, 164, 164, 0.3);
     background: none;
 }
 .like-btn-done{
-
+    
 }
 .like-btn>i{
     margin: 0 3px;
