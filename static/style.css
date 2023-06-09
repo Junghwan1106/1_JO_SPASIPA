@@ -122,11 +122,12 @@ a:active {
     color: red;
 
 }
+
 .input-group-text{
-    color: red;
+    color: rgb(255, 0, 255);
 }
 .form-select{
-    color:red;
+    color:rgb(255, 0, 221);
 }
 .mybtns {
     display: flex;
