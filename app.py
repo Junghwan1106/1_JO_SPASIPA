@@ -53,9 +53,11 @@ def tube_post():
     ogdesc= soup.select_one('meta[property="og:description"]')['content']
     ogid= soup.select_one('meta[property="fb:app_id"]')['content']
     # titleimage = soup.select_one('#owner > ytd-video-owner-renderer > a >yt-img-shadow > img')
-    
+    tube_list = list(db.tubes.find({}, {'_id': False}))
+    count = len(tube_list) + 1
 
     doc = {
+        'num':count,
         'ogid':ogid,
         'title':ogtitle,
         'desc':ogdesc,
@@ -68,19 +70,6 @@ def tube_post():
         'likes': 0
     }
     db.tubes.insert_one(doc)
-    doc_ordered = {
-        'ogid':ogid,
-        'title':ogtitle,
-        'desc':ogdesc,
-        'image':ogimage,
-        'url':url_receive, 
-        'comment':comment_receive,
-        'star': star_receive,
-        # 'titleimage':titleimage,
-        'done': 0,
-        'likes': 0
-    }
-    db.tubes_ordered.insert_one(doc_ordered)
 
     return jsonify({'msg':'저장 완료!'})
 
@@ -215,10 +204,14 @@ def api_valid():
     # ㅡㅡㅡㅡㅡ여기까지 로그인입니다.ㅡㅡㅡㅡㅡㅡ
 
 @app.route("/main", methods=["GET"])
-def movie_get():
+def tube_get():
     all_movies = list(db.tubes.find({},{'_id':False}))
     return jsonify({'result': all_movies})
 
+@app.route("/main/top", methods=["GET"])
+def tube_get_top():
+    all_tubes_top = list(db.tubes.find({},{'_id':False}).sort("likes", -1))
+    return jsonify({'result': all_tubes_top})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
