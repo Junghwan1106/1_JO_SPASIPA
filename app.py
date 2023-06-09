@@ -3,6 +3,7 @@ import os
 import certifi
 import requests
 from bs4 import BeautifulSoup
+from bson.objectid import ObjectId
 from dotenv import load_dotenv
 from flask import (Flask, jsonify, redirect, render_template, request, session,
                    url_for)
@@ -35,6 +36,13 @@ import jwt
 def home():
     return render_template('index.html')
 
+@app.route("/main", methods=["GET"])
+def tube_get():
+    all_movies = objectIdDecoder(list(db.tubes.find({})))
+    all_movies.reverse()
+    return jsonify({'result': all_movies})
+
+
 @app.route("/main", methods=["POST"])
 def tube_post():
     url_receive = request.form['url_give']
@@ -53,7 +61,7 @@ def tube_post():
     ogdesc= soup.select_one('meta[property="og:description"]')['content']
     ogid= soup.select_one('meta[property="fb:app_id"]')['content']
     # titleimage = soup.select_one('#owner > ytd-video-owner-renderer > a >yt-img-shadow > img')
-    tube_list = list(db.tubes.find({}, {'_id': False}))
+    tube_list = list(db.tubes.find({}, {'_id': True}))
     count = len(tube_list) + 1
 
     doc = {
@@ -76,23 +84,12 @@ def tube_post():
 @app.route("/main/likes", methods=["POST"])
 def like():
     done_receive = request.form['done_give'] 
-    url_receive = request.form['url_give']
+    id = request.form['id_give']
     like_receive = request.form['like_give']
-    db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)+1, 'done':1}})
-    # if done_receive == "0" :
-    #     db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)+1}})
-    #     db.tubes.update_one({'url':url_receive},{'$set':{'done':1}})
-    # else : 
-    #     db.tubes.update_one({'url':url_receive},{'$set':{'likes':int(like_receive)-1}})
-    #     db.tubes.update_one({'url':url_receive},{'$set':{'done':0}})
-            
-        
-   
+    print(int(like_receive)+1)
+    db.tubes.update_one({'_id':ObjectId(id)},{'$set':{'likes':int(like_receive)+1, 'done':1}})
     return  ('',204)   #아무것도 리턴하지 않는 방법.
-# 로그인 관련
-#################################
-##  HTML을 주는 부분             ##
-#################################
+
 @app.route('/auth')
 def jwtfunc():
     token_receive = request.cookies.get('mytoken')
@@ -203,16 +200,17 @@ def api_valid():
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
     # ㅡㅡㅡㅡㅡ여기까지 로그인입니다.ㅡㅡㅡㅡㅡㅡ
 
-@app.route("/main", methods=["GET"])
-def tube_get():
-    all_movies = list(db.tubes.find({},{'_id':False}))
-    all_movies.reverse()
-    return jsonify({'result': all_movies})
-
 @app.route("/main/top", methods=["GET"])
 def tube_get_top():
     all_tubes_top = list(db.tubes.find({},{'_id':False}).sort("likes", -1))
     return jsonify({'result': all_tubes_top})
+
+def objectIdDecoder(list):
+    results=[]
+    for document in list:
+        document['_id'] = str(document['_id'])
+        results.append(document)
+    return results
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

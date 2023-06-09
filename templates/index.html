@@ -59,7 +59,7 @@
                     let url = a['url']
                     let temp_html = `
                         <div class="top-tube" id='${url}' onclick="openModal(this)">
-                            <img src="https://www.netflix.com/tudum/top10/images/big_numbers/${i+1}.png" alt="number">
+                            <img src="https://www.netflix.com/tudum/top10/images/big_numbers/${i + 1}.png" alt="number">
                             <img src="${image}"
                                 alt="tube image">
                         </div>
@@ -77,6 +77,7 @@
 
                 $('#tube-box').empty()
                 rows.forEach((a, i) => {
+                    let id = a['_id']
                     let url = a['url']
                     let title = a['title']
                     let image = a['image']
@@ -99,11 +100,10 @@
                                         <p class="mycomment">${comment}</p>
                                         <p class="star">${star_repeat}</p>
                                         <p class="user">작성자</p>
-                                        ${+done_like == 1 ? `<button onclick="like(${tube_likes},'${url}',${done_like})" class="like-btn"> <i id="like-icon" class='fa-solid fa-heart'></i>` : `<button onclick="like(${tube_likes},'${url}',${done_like})" class="like-btn like-btn-done">
+                                        ${+done_like == 1 ? `<button onclick="like(${tube_likes},'${id}',${done_like})" class="like-btn"> <i id="like-icon" class='fa-solid fa-heart'></i>` : `<button onclick="like(${tube_likes},'${id}',${done_like})" class="like-btn like-btn-done">
                                             <i id="like-icon" class='fa-regular fa-heart'></i>`}
-                            <span class="likes">${tube_likes}</span>
-                        </ >
-                        </div >
+                                        <span class="likes">${tube_likes}</span>
+                                    </div >
                                 </div >
                             </div >
                     `
@@ -141,42 +141,20 @@
             $('#post-box').hide()
         }
 
-        function like(tube_likes, url, done_like) {
-            // let likeClass = $('#like-icon').attr('class')
-
-            // if (likeClass == 'fa-solid fa-heart') {
-            //     $('#like-icon').attr('class', 'fa-regular fa-heart')
-            // } else {
-            //     $('#like-icon').attr('class', 'fa-solid fa-heart')
-            // }
-
-
+        function like(tube_likes, id, done_like) {
+            console.log("~~~~~");
             $.ajax({
                 type: "POST",
                 url: "/main/likes",
                 data: {
                     like_give: tube_likes,
-                    url_give: url,
+                    id_give: id,
                     done_give: done_like
                 },
                 success: function () {
-
                     window.location.reload()
                 }
             });
-
-            // let formData = new FormData();
-            // formData.append('url_give', url)
-            // formData.append('like_give', tube_likes)
-
-            // fetch('/main/likes', {
-            //     method: "POST",
-            //     body: formData
-            // }).then((res) => res.json()).then((data) => {
-            //     alert(data['msg'])
-            //     window.location.reload()
-            // })
-
         }
     </script>
 </head>
