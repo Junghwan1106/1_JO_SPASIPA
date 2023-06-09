@@ -38,7 +38,7 @@ __[프로젝트 최종 정리 notion](https://mango-marmot-5a2.notion.site/23-06
             <td width="200"></td>
             <td width="200"></td>
             <td width="200"></td>
-            <td width="200"> 서로의 코드를 존중하고 코드 리뷰를하는 것을 좋아합니다! </td>
+            <td width="200"> 서로의 코드를 존중하고 코드 리뷰하는 것을 좋아합니다! </td>
         </tr>
     </tbody>
 </table>
