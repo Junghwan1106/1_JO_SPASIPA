@@ -32,7 +32,7 @@ __[프로젝트 최종 정리 notion](https://mango-marmot-5a2.notion.site/23-06
             <td><a href="https://github.com/Junghwan1106">@Junghwan1106</a></td>
             <td><a href="https://github.com/HGive">@HGive</a></td>
             <td><a href="https://github.com/NayoungKim1212">@NayoungKim1212</a></td>
-            <td><a href="https://github.com/cprnpip">@cornpip</a></td>
+            <td><a href="https://github.com/cornpip">@cornpip</a></td>
         </tr>
         <tr>
             <td width="200">웃으면서 밝게 지내는 걸 좋아합니다. 협업시 항상 웃는 모습으로 힘차게 코드 리뷰하고 싶습니다.</td>
