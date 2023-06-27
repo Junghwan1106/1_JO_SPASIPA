@@ -26,7 +26,7 @@ __[프로젝트 최종 정리 notion](https://mango-marmot-5a2.notion.site/23-06
             <td><img width="200" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbVO6Ev%2Fbtsgu7WBjEd%2F4Ub4KXk3DLfkbOLkwcdcJ0%2Fimg.png" /> </td>
             <td><img width="200" src="" /></td>
             <td><img width="200" src="" /></td>
-            <td><img width="200" src="https://github.com/Junghwan1106/1_JO_SPASIPA/assets/74674780/68321fbf-49b7-4d78-a3a9-0ce32b025df5" /></td>
+            <td><img width="200" src="" /></td>
         </tr>
         <tr>
             <td><a href="https://github.com/Junghwan1106">@Junghwan1106</a></td>
